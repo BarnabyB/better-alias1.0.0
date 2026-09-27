@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"package": "betteralias.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"GameRendererMixin",
+		"RenderTargetAccessor"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

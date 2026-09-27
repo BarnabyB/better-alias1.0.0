@@ -1,0 +1,90 @@
+{
+  "targets": {
+    "edges": {},
+    "weights": {},
+    "final": {}
+  },
+  "passes": [
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "better-alias:post/smaa_edges",
+      "inputs": [
+        {
+          "sampler_name": "Color",
+          "target": "minecraft:main"
+        }
+      ],
+      "output": "edges"
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "better-alias:post/smaa_weights",
+      "inputs": [
+        {
+          "sampler_name": "Edges",
+          "target": "edges",
+          "bilinear": true
+        },
+        {
+          "sampler_name": "Area",
+          "location": "better-alias:smaa_area",
+          "width": 160,
+          "height": 560,
+          "bilinear": true
+        },
+        {
+          "sampler_name": "Search",
+          "location": "better-alias:smaa_search",
+          "width": 64,
+          "height": 16,
+          "bilinear": false
+        }
+      ],
+      "output": "weights",
+      "uniforms": {
+        "SmaaConfig": [
+          {
+            "name": "SubsampleIndices",
+            "type": "vec4",
+            "value": [ 0.0, 0.0, 0.0, 0.0 ]
+          }
+        ]
+      }
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "better-alias:post/smaa_blend",
+      "inputs": [
+        {
+          "sampler_name": "Color",
+          "target": "minecraft:main"
+        },
+        {
+          "sampler_name": "Weights",
+          "target": "weights"
+        }
+      ],
+      "output": "final"
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "minecraft:post/blit",
+      "inputs": [
+        {
+          "sampler_name": "In",
+          "target": "final"
+        }
+      ],
+      "uniforms": {
+        "BlitConfig": [
+          {
+            "name": "ColorModulate",
+            "type": "vec4",
+            "value": [ 1.0, 1.0, 1.0, 1.0 ]
+          }
+        ]
+      },
+      "output": "minecraft:main"
+    }
+  ]
+}

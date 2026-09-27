@@ -1,0 +1,84 @@
+{
+  "targets": {
+    "edges": {},
+    "shapes": {},
+    "final": {}
+  },
+  "passes": [
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "better-alias:post/cmaa2_edges",
+      "inputs": [
+        {
+          "sampler_name": "Color",
+          "target": "minecraft:main"
+        }
+      ],
+      "output": "edges",
+      "uniforms": {
+        "Cmaa2Config": [
+          {
+            "name": "EdgeThreshold",
+            "type": "float",
+            "value": 0.07
+          }
+        ]
+      }
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "better-alias:post/cmaa2_shapes",
+      "inputs": [
+        {
+          "sampler_name": "Edges",
+          "target": "edges"
+        }
+      ],
+      "output": "shapes"
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "better-alias:post/cmaa2_apply",
+      "inputs": [
+        {
+          "sampler_name": "Color",
+          "target": "minecraft:main"
+        },
+        {
+          "sampler_name": "Edges",
+          "target": "edges"
+        },
+        {
+          "sampler_name": "Shapes",
+          "target": "shapes"
+        }
+      ],
+      "output": "final"
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "minecraft:post/blit",
+      "inputs": [
+        {
+          "sampler_name": "In",
+          "target": "final"
+        }
+      ],
+      "uniforms": {
+        "BlitConfig": [
+          {
+            "name": "ColorModulate",
+            "type": "vec4",
+            "value": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "output": "minecraft:main"
+    }
+  ]
+}

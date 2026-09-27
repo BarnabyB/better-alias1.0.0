@@ -1,0 +1,28 @@
+{
+	"schemaVersion": 1,
+	"id": "better-alias",
+	"version": "${version}",
+	"name": "Better Alias",
+	"description": "Anti-aliasing for Minecraft: FXAA, SMAA (1x, T2x, 4x), CMAA2, TAA, SSAA and AMD RCAS sharpening. Settings in Mod Menu and Sodium's Video Settings; pauses automatically with Iris shader packs.",
+	"authors": [ "BarnabyB" ],
+	"license": "MIT",
+	"icon": "assets/better-alias/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [ "betteralias.BetterAliasClient" ],
+		"modmenu": [ "betteralias.BetterAliasModMenu" ],
+		"sodium:config_api_user": [ "betteralias.compat.SodiumOptionsPage" ]
+	},
+	"mixins": [ "better-alias.mixins.json" ],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "26.2",
+		"java": ">=25",
+		"yet_another_config_lib_v3": "*"
+	},
+	"suggests": {
+		"sodium": ">=0.9.0",
+		"iris": "*",
+		"modmenu": "*"
+	}
+}

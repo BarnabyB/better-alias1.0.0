@@ -1,0 +1,53 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version '1.17.5'
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+base { archivesName = project.archives_base_name }
+
+repositories {
+	maven { url "https://maven.terraformersmc.com/" }
+	maven { url "https://maven.isxander.dev/releases" }
+	// Modrinth Maven, for mods that are only published on Modrinth (e.g. "maven.modrinth:sodium:<version>").
+	// Not used right now: Sodium comes from the jar in libs/ below.
+	maven { url "https://api.modrinth.com/m2" }
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	implementation "dev.isxander:yet-another-config-lib:3.9.4+26.2-fabric"
+	implementation "com.terraformersmc:modmenu:20.0.0-beta.4"
+
+	// Sodium is an optional dependency: we compile against its config API so we can add a page to its
+	// Video Settings screen, but players don't need Sodium installed (fabric.mod.json only "suggests" it).
+	compileOnly files("libs/sodium-fabric-0.9.2+mc26.2.jar")
+	// Also load Sodium in the dev client ("Minecraft Client" run config) so the page can be tested.
+	// Comment this line out to test the mod without Sodium.
+	runtimeOnly files("libs/sodium-fabric-0.9.2+mc26.2.jar")
+}
+
+java {
+	// withSourcesJar() has been REMOVED here to prevent the genSourcesWithCfr crash.
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+// Ship the licence and the third-party notices inside the jar, as the MIT/BSD/Apache licences of the ported code require.
+jar {
+	// Read the name now (a plain String), so the rename below doesn't touch the project while the jar is built
+	def licenseSuffix = project.base.archivesName.get()
+	from("LICENSE") { rename { "${it}_${licenseSuffix}" } }
+	from("THIRD_PARTY_NOTICES.md")
+	from("licenses") { into "licenses" }
+}
+
+tasks.withType(ProcessResources).configureEach {
+	def expandProps = ["version": project.version]
+	inputs.properties(expandProps)
+	filesMatching("fabric.mod.json") { expand expandProps }
+}

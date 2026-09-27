@@ -1,0 +1,123 @@
+{
+  "better-alias.options.title": "Better Alias",
+  "better-alias.options.page": "Anti-Aliasing",
+  "better-alias.options.group.post_process": "Method",
+  "better-alias.options.group.sharpening": "Sharpening",
+  "better-alias.options.group.upscaling": "Upscaling",
+  "better-alias.options.group.debug": "Debug",
+  "better-alias.options.group.shader_packs": "Shader Packs (Iris)",
+  "better-alias.options.mode": "Anti-Aliasing Method",
+  "better-alias.options.mode.tooltip.none": "No anti-aliasing.",
+  "better-alias.options.mode.tooltip.fxaa": "FXAA: fastest. Smooths edges in one pass, but softens fine texture detail a little.",
+  "better-alias.options.mode.tooltip.smaa": "SMAA 1x: follows each edge's shape for a cleaner, sharper result than FXAA. Low cost.",
+  "better-alias.options.mode.tooltip.smaa_t2x": "SMAA T2x: SMAA 1x plus a tiny camera shift each frame, blending the last 2 frames. Smoother edges and less shimmer, still sharp. Your hand isn't smoothed.",
+  "better-alias.options.mode.tooltip.smaa_4x": "SMAA 4x (Temporal): like SMAA T2x, but blends 4 frames for 4 samples per pixel. The smoothest SMAA option; fast mobs can look slightly soft. Your hand isn't smoothed.",
+  "better-alias.options.mode.tooltip.cmaa2": "CMAA2: only fixes clear stair-step edges and leaves text and textures untouched. The sharpest option. Low cost.",
+  "better-alias.options.mode.tooltip.taa": "TAA: shifts the camera slightly each frame and blends many frames. Smooths everything, including shimmering textures, with sharpening to keep detail. Fast mobs can leave faint trails; your hand isn't smoothed.",
+  "better-alias.options.mode.tooltip.ssaa": "SSAA: draws the world at a higher resolution and shrinks it down. The cleanest image, but by far the most demanding. Set how far to push it with SSAA Scale.",
+  "better-alias.options.mode.tooltip.iris": "Pauses while an Iris shader pack is on, unless Keep With Shader Packs is enabled.",
+  "better-alias.options.mode.tooltip.iris_temporal": "%s always turns off while an Iris shader pack is on.",
+  "better-alias.options.mode.tooltip.iris_ssaa": "%s always turns off while an Iris shader pack is on.",
+  "better-alias.options.mode.paused": "Paused: an Iris shader pack is on. Turn it off, or enable Keep With Shader Packs.",
+  "better-alias.options.mode.paused_temporal": "Paused: this method can't run with an Iris shader pack.",
+
+  "better-alias.options.cmaa2_quality": "CMAA2 Quality",
+  "better-alias.options.cmaa2_quality.tooltip.low": "Low: only strong, high-contrast edges.",
+  "better-alias.options.cmaa2_quality.tooltip.medium": "Medium: most visible edges.",
+  "better-alias.options.cmaa2_quality.tooltip.high": "High (recommended): faint edges too.",
+  "better-alias.options.cmaa2_quality.tooltip.ultra": "Ultra: even very faint edges; may soften subtle texture detail.",
+  "better-alias.options.cmaa2_quality.tooltip.only_cmaa2": "Only used with CMAA2.",
+
+  "better-alias.options.taa_sharpness": "TAA Sharpening",
+  "better-alias.options.taa_sharpness.tooltip": "How much detail AMD CAS sharpening restores after TAA's blending. 0% is off.\n\nOnly used with TAA.",
+  "better-alias.options.taa_sharpness.off": "Off",
+
+  "better-alias.options.ssaa_scale": "SSAA Scale",
+  "better-alias.options.ssaa_scale.tooltip.x1_25": "1.25x: about 1.6 samples per pixel. The lightest step; about 1.6x the GPU work.",
+  "better-alias.options.ssaa_scale.tooltip.x1_5": "1.5x: 2.25 samples per pixel. Light; about 2x the GPU work.",
+  "better-alias.options.ssaa_scale.tooltip.x1_75": "1.75x: about 3 samples per pixel. About 3x the GPU work.",
+  "better-alias.options.ssaa_scale.tooltip.x2": "2x (recommended): 4 samples per pixel. About 4x the GPU work.",
+  "better-alias.options.ssaa_scale.tooltip.x2_5": "2.5x: about 6 samples per pixel. About 6x the GPU work.",
+  "better-alias.options.ssaa_scale.tooltip.x3": "3x: 9 samples per pixel. About 9x the GPU work; for powerful graphics cards.",
+  "better-alias.options.ssaa_scale.tooltip.x4": "4x: 16 samples per pixel. About 16x the GPU work; mainly for screenshots.",
+
+  "better-alias.options.render_resolution": "Renders at %3$s x %4$s for your %1$s x %2$s window.",
+
+  "better-alias.options.ssaa_scale.limited": "Reduced to your graphics card's maximum texture size.",
+  "better-alias.options.ssaa_scale.only_ssaa": "Only used with SSAA. Drops to a smaller scale automatically if video memory runs out.",
+
+  "better-alias.options.rcas_sharpness": "RCAS Sharpening",
+  "better-alias.options.rcas_sharpness.tooltip": "Sharpens the final image with AMD's RCAS (from FSR) to bring back detail lost to anti-aliasing or upscaling, without halos. 0% is off; 25-50% suits most methods. With FSR 1 upscaling this is FSR's own sharpening step.\n\nNot used with TAA or NIS, which have their own sharpening.",
+
+  "better-alias.options.upscaler": "Upscaler",
+  "better-alias.options.upscaler.tooltip.off": "Off: the world renders at your window's full resolution.",
+  "better-alias.options.upscaler.tooltip.fsr1": "FSR 1: renders the world at a lower resolution for more FPS, then upscales it with AMD's edge-aware FSR 1. The cleanest result; pair it with RCAS Sharpening (about 25-40%).",
+  "better-alias.options.upscaler.tooltip.nis": "NIS: renders the world at a lower resolution for more FPS, then upscales and sharpens it with NVIDIA Image Scaling. Crisper than FSR 1 but can ring around hard edges; tune with NIS Sharpness.",
+  "better-alias.options.upscaler.tooltip.shared": "Works on any graphics card and with every method except SSAA. The anti-aliasing runs before upscaling. The HUD stays at full resolution. Turns off while an Iris shader pack is on.",
+
+  "better-alias.options.render_scale": "Render Scale",
+  "better-alias.options.render_scale.tooltip": "How much of your window's resolution the world is rendered at before upscaling. Lower means more FPS but a softer image.",
+
+  "better-alias.options.upscaling.only": "Only used when an Upscaler is selected.",
+
+  "better-alias.options.nis_sharpness": "NIS Sharpness",
+  "better-alias.options.nis_sharpness.tooltip": "How strongly NIS sharpens while upscaling. Lower if edges look harsh.\n\nOnly used with the NIS upscaler.",
+
+  "better-alias.options.keep_with_shader_packs": "Keep With Shader Packs",
+  "better-alias.options.keep_with_shader_packs.tooltip": "Off (recommended): FXAA, SMAA 1x, CMAA2 and RCAS pause while an Iris shader pack is on.\nOn: they run on top of the shader pack.",
+  "better-alias.options.keep_with_shader_packs.unavailable": "Needs Iris, plus FXAA, SMAA 1x, CMAA2 or RCAS. The other methods and upscaling always turn off with shader packs.",
+  "better-alias.options.keep_with_shader_packs.warning": "Most shader packs have their own anti-aliasing and sharpening. Stacking another usually looks blurrier or over-sharpened.",
+
+  "better-alias.options.iris_status.not_installed": "Iris isn't installed, so this has no effect.",
+  "better-alias.options.iris_status.inactive": "Iris: no shader pack on.",
+  "better-alias.options.iris_status.active": "Iris: a shader pack is on.",
+
+  "better-alias.options.show_edges": "Show Detected Edges",
+  "better-alias.options.show_edges.tooltip": "Debug view: dims the image and paints every pixel the current method treats as an edge magenta. Useful for comparing methods and for bug reports. Turns itself off when the game restarts.\n\nOnly for FXAA, SMAA 1x and CMAA2.",
+
+  "better-alias.options.performance_readout": "Performance Readout",
+  "better-alias.options.performance_readout.tooltip": "Adds a line with the method, the resolution the world is drawn at, and how long Better Alias's own GPU passes take. Off, only on the F3 screen, or always on screen. The same setting appears in F3's debug options.",
+
+  "better-alias.rcas.name": "RCAS sharpening",
+
+  "better-alias.toast.shader_pack.title": "Better Alias + shader pack",
+  "better-alias.toast.shader_pack.message": "%s is running on top of your shader pack. Turn off Keep With Shader Packs if it looks blurry.",
+  "better-alias.toast.ssaa_memory.title": "SSAA: not enough video memory",
+  "better-alias.toast.ssaa_memory.reduced": "%s didn't fit, using %s instead.",
+  "better-alias.toast.ssaa_memory.none": "%s didn't fit at any scale. SSAA is off until you change the setting.",
+
+  "better-alias.mode.none": "Off",
+  "better-alias.mode.fxaa": "FXAA",
+  "better-alias.mode.smaa": "SMAA 1x",
+  "better-alias.mode.smaa_t2x": "SMAA T2x",
+  "better-alias.mode.smaa_4x": "SMAA 4x (Temporal)",
+  "better-alias.mode.cmaa2": "CMAA2",
+  "better-alias.mode.taa": "TAA",
+  "better-alias.mode.ssaa": "SSAA",
+
+  "better-alias.cmaa2_quality.low": "Low",
+  "better-alias.cmaa2_quality.medium": "Medium",
+  "better-alias.cmaa2_quality.high": "High",
+  "better-alias.cmaa2_quality.ultra": "Ultra",
+
+  "better-alias.ssaa_scale.x1_25": "1.25x",
+  "better-alias.ssaa_scale.x1_5": "1.5x",
+  "better-alias.ssaa_scale.x1_75": "1.75x",
+  "better-alias.ssaa_scale.x2": "2x",
+  "better-alias.ssaa_scale.x2_5": "2.5x",
+  "better-alias.ssaa_scale.x3": "3x",
+  "better-alias.ssaa_scale.x4": "4x",
+
+  "better-alias.upscaler.off": "Off",
+  "better-alias.upscaler.fsr1": "FSR 1",
+  "better-alias.upscaler.nis": "NIS",
+
+  "better-alias.render_scale.ultra_quality": "Ultra Quality (77%)",
+  "better-alias.render_scale.quality": "Quality (67%)",
+  "better-alias.render_scale.balanced": "Balanced (59%)",
+  "better-alias.render_scale.performance": "Performance (50%)",
+
+  "better-alias.performance_readout.off": "Off",
+  "better-alias.performance_readout.f3": "In F3",
+  "better-alias.performance_readout.always": "Always"
+}
