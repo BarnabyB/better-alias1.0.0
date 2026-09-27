@@ -1,4 +1,4 @@
-# Better Alias
+# Better Alias - OpenGl
 
 Anti-aliasing for Minecraft 26.2 (Fabric). Pick from seven methods, from cheap edge smoothing to full supersampling,
 with optional AMD RCAS sharpening and FSR 1 / NIS upscaling. Works with Sodium, and pauses automatically when an Iris
